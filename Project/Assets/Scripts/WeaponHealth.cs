@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class WeaponHealth : MonoBehaviour
 {
 
     [SerializeField] 

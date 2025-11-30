@@ -16,13 +16,13 @@ public class WeaponDisplay : MonoBehaviour
     void Start()
     {
         nameText.text =  weapon.name;
-        healthText.text = weapon.health.toString();
-        speedText.text = weapon.speed.toString();
+        healthText.text = weapon.health.ToString();
+        speedText.text = weapon.speed.ToString();
     }
 
     void Update()
     {
-        healthText.text = weapon.health.toString();
+        healthText.text = weapon.health.ToString();
     }
 
 }

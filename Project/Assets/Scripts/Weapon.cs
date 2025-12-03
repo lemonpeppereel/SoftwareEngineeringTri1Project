@@ -7,5 +7,5 @@ public class Weapon : ScriptableObject
 {
     public new string name;
     public int health;
-    public float speed;   
+    public int speed;   
 }

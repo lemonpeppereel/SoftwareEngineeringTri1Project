@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class WeaponDisplay : MonoBehaviour
 {
     
     public Weapon weapon;
 
-    public Text nameText;
-    public Text healthText;
-    public Text speedText;
-
+   public TextMeshProUGUI nameText;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI speedText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

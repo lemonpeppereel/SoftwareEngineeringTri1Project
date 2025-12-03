@@ -26,8 +26,12 @@ public class ControlMenuManager : MonoBehaviour
 
     }
 
-    public void QuitGame(){
-        Application.Quit(); 
+    public void ClearGame(){
+        GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("Weapon");
+        foreach (GameObject weapon in toDestroy)
+        {
+            Destroy(weapon);
+        }
     }
 
 }

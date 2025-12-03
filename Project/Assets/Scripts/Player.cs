@@ -12,12 +12,13 @@ public class Ball : MonoBehaviour
 
         // Random initial movement direction
         direction = Random.insideUnitCircle.normalized;
+        // Constant velocity movement
+        rb.linearVelocity = direction * speed;
     }
 
     void FixedUpdate()
     {
-        // Constant velocity movement
-        rb.linearVelocity = direction * speed;
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

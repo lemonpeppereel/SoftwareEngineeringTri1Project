@@ -199,7 +199,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &7477939
 RectTransform:
@@ -384,16 +384,16 @@ RectTransform:
   m_GameObject: {fileID: 101913449}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.3, y: 2.3, z: 2.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 482252765}
   m_Father: {fileID: 568170220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 355.39, y: 0}
-  m_SizeDelta: {x: -710.78, y: 636.25}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 760, y: 0.125}
+  m_SizeDelta: {x: 463.83038, y: 636.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101913451
 MonoBehaviour:
@@ -739,10 +739,10 @@ RectTransform:
   - {fileID: 547688278}
   m_Father: {fileID: 101913450}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -141.5252}
-  m_SizeDelta: {x: -150.00002, y: -433.0504}
+  m_SizeDelta: {x: 361, y: 202.94958}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &482252766
 MonoBehaviour:
@@ -1007,7 +1007,7 @@ Transform:
   m_GameObject: {fileID: 594647726}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.36, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1576,7 +1576,7 @@ GameObject:
   - component: {fileID: 892340051}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Ball
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1596,7 +1596,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 1a9c7b80b1f820e48a54f921e496bc54, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1745,7 +1745,7 @@ GameObject:
   - component: {fileID: 929321193}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Ball
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1765,7 +1765,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 1a9c7b80b1f820e48a54f921e496bc54, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1880,7 +1880,7 @@ Transform:
   m_GameObject: {fileID: 929321188}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 0, z: 0}
+  m_LocalPosition: {x: -5.29, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2475,8 +2475,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 356.14, y: 0}
-  m_SizeDelta: {x: 712.28, y: 0.25}
+  m_AnchoredPosition: {x: 334.08, y: 0}
+  m_SizeDelta: {x: 668.17, y: 0.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1996034801
 MonoBehaviour:

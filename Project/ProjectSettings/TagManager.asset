@@ -8,6 +8,7 @@ TagManager:
   - SideWall
   - Ball
   - Weapon
+  - Spawnpoint
   layers:
   - Default
   - TransparentFX

@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 268937604}
   - component: {fileID: 268937605}
   - component: {fileID: 268937606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftWall
   m_TagString: SideWall
   m_Icon: {fileID: 0}
@@ -1050,6 +1050,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317796640}
   m_CullTransparentMesh: 1
+--- !u!1 &414449111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414449112}
+  m_Layer: 0
+  m_Name: FocalPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &414449112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414449111}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1272167843}
+  m_Father: {fileID: 929321192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482252764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 594647727}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1573,7 +1605,7 @@ GameObject:
   - component: {fileID: 635983519}
   - component: {fileID: 635983520}
   - component: {fileID: 635983521}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TopWall
   m_TagString: VerticalWall
   m_Icon: {fileID: 0}
@@ -2018,7 +2050,7 @@ GameObject:
   - component: {fileID: 874375855}
   - component: {fileID: 874375856}
   - component: {fileID: 874375857}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightWall
   m_TagString: SideWall
   m_Icon: {fileID: 0}
@@ -2157,9 +2189,10 @@ GameObject:
   - component: {fileID: 892340048}
   - component: {fileID: 892340047}
   - component: {fileID: 892340051}
-  m_Layer: 0
+  - component: {fileID: 892340052}
+  m_Layer: 8
   m_Name: WeaponSpear
-  m_TagString: Weapon
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2298,7 +2331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1604302820}
+  - {fileID: 1059610147}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &892340051
@@ -2314,6 +2347,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   speed: 5
+  rotationSpeed: 360
+--- !u!114 &892340052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892340046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9711117a0df930419a10a4ee7446838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponHealth
+  maxHealth: 50
+  spriteRenderer: {fileID: 0}
 --- !u!1 &929321188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,9 +2375,10 @@ GameObject:
   - component: {fileID: 929321190}
   - component: {fileID: 929321189}
   - component: {fileID: 929321193}
-  m_Layer: 0
+  - component: {fileID: 929321194}
+  m_Layer: 8
   m_Name: WeaponSword
-  m_TagString: Weapon
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2468,7 +2517,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1272167843}
+  - {fileID: 414449112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &929321193
@@ -2484,6 +2533,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   speed: 5
+  rotationSpeed: 360
+--- !u!114 &929321194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929321188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9711117a0df930419a10a4ee7446838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponHealth
+  maxHealth: 50
+  spriteRenderer: {fileID: 0}
 --- !u!1 &1004763260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,6 +2681,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004763260}
   m_CullTransparentMesh: 1
+--- !u!1 &1059610146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059610147}
+  m_Layer: 0
+  m_Name: FocalPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1059610147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059610146}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1604302820}
+  m_Father: {fileID: 892340050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190087586
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,9 +2762,9 @@ GameObject:
   - component: {fileID: 1272167843}
   - component: {fileID: 1272167844}
   - component: {fileID: 1272167845}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2681,12 +2777,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272167842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: -0, y: -0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 929321192}
+  m_Father: {fileID: 414449112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!212 &1272167844
 SpriteRenderer:
@@ -2820,9 +2916,9 @@ GameObject:
   - component: {fileID: 1604302820}
   - component: {fileID: 1604302821}
   - component: {fileID: 1604302822}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2835,12 +2931,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604302819}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: -0, y: -0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 892340050}
+  m_Father: {fileID: 1059610147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!212 &1604302821
 SpriteRenderer:
@@ -3122,7 +3218,7 @@ GameObject:
   - component: {fileID: 1836241528}
   - component: {fileID: 1836241529}
   - component: {fileID: 1836241530}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomWall
   m_TagString: VerticalWall
   m_Icon: {fileID: 0}

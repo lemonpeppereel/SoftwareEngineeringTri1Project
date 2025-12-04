@@ -11,12 +11,12 @@ public class WeaponController : MonoBehaviour
     {
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         // Case 1: Weapon hits a player
-        if (other.CompareTag(targetTag))
+        if (other.gameObject.CompareTag(targetTag))
         {
-            WeaponHealth health = other.GetComponent<WeaponHealth>();
+            WeaponHealth health = other.gameObject.GetComponent<WeaponHealth>();
             if (health != null)
             {
                 health.TakeDamage(damage);
@@ -25,10 +25,10 @@ public class WeaponController : MonoBehaviour
         }
 
         // Case 2: Weapon hits another weapon
-        if (other.CompareTag(weaponTag))
+        if (other.gameObject.CompareTag(weaponTag))
         {
-            Rigidbody2D myRb = GetComponentInParent<Rigidbody2D>();
-            Rigidbody2D otherRb = other.GetComponentInParent<Rigidbody2D>();
+            Rigidbody2D myRb = gameObject.GetComponentInParent<Rigidbody2D>();
+            Rigidbody2D otherRb = other.gameObject.GetComponentInParent<Rigidbody2D>();
 
             if (myRb != null && otherRb != null)
             {

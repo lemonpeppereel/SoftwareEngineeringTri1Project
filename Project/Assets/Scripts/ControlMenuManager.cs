@@ -27,7 +27,7 @@ public class ControlMenuManager : MonoBehaviour
     }
 
     public void ClearGame(){
-        GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("Weapon");
+        GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("Ball");
         foreach (GameObject weapon in toDestroy)
         {
             Destroy(weapon);

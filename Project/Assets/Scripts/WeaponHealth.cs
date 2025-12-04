@@ -83,6 +83,10 @@ public class WeaponHealth : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+        if (DeathCounter.Instance != null)
+        {
+                DeathCounter.Instance.IncrementDeathCounter();
+        }
         Debug.Log("Weapon destroyed");
     }
 

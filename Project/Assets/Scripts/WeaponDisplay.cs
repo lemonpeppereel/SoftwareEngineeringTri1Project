@@ -23,7 +23,6 @@ public class WeaponDisplay : MonoBehaviour
 
     void Update()
     {
-        healthText.text = weapon.health.ToString();
     }
 
 }

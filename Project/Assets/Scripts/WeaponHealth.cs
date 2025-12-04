@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class WeaponHealth : MonoBehaviour
 {
@@ -11,19 +12,29 @@ public class WeaponHealth : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+
+    private Coroutine damageFlashCoroutine;
+
     private GameObject weapon;
 
     private float flashLength = 0.05f; 
 
     private bool damagePossible;
-    private float damageInvincibility; 
-    private float damageInvincibilityCooldown;
+    private float damageInvincibility = 0.1f; 
+    private float damageInvincibilityCooldown = 0.1f;
+    
+    [SerializeField]
+    private TMP_Text healthText;
+
+    private Color originalColor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentHealth = maxHealth; 
-        weapon = GetComponent<GameObject>(); 
+        currentHealth = maxHealth;
+        UpdateHealthText();
+        originalColor = spriteRenderer.color;
+
     }
 
     // Update is called once per frame
@@ -43,36 +54,52 @@ public class WeaponHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // puts currentHealth into the range [0, maxHealth]
-        StartCoroutine(DamageFlash());
+        
+        if (damageFlashCoroutine != null)
+        {
+            StopCoroutine(damageFlashCoroutine);
+            spriteRenderer.color = originalColor;
+        }
 
-        Debug.Log(weapon.name + " took " + damage + " damage");
+        damageFlashCoroutine = StartCoroutine(DamageFlash());
+
+        UpdateHealthText();
+        Debug.Log("weapon took " + damage + " damage");
 
         if (IsDead())
         {
             Die(); 
         }
+
         damagePossible = false;
+        damageInvincibilityCooldown = damageInvincibility;
     }
 
     public bool IsDead()
     {
-        if (currentHealth <= 0)
-        {
-            return true;
-        }    
-        return false;
+        return currentHealth <= 0;
     }
 
     public void Die()
     {
         Destroy(gameObject);
+        Debug.Log("Weapon destroyed");
     }
 
     public IEnumerator DamageFlash()
     {
         spriteRenderer.color = Color.red; 
         yield return new WaitForSeconds(flashLength);
-        spriteRenderer.color = Color.hotPink;; // this will be changed once there are real sprites added
+        spriteRenderer.color = originalColor;
+        damageFlashCoroutine = null;
+    }
+
+    private void UpdateHealthText()
+    {
+        if (healthText != null)
+        {
+            healthText.text = currentHealth.ToString();
+        }
     }
 
 }

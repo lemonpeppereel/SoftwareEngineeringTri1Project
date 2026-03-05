@@ -4,56 +4,48 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 direction;
-  
+
     public float rotationSpeed = 360f;
     private bool forwardRotation = true;
 
     [SerializeField] public float speed;
     [SerializeField] public int damage;
-    [SerializeField] private string targetTag; 
+    [SerializeField] private string targetTag;
     [SerializeField] private string weaponTag;
 
-    public Weapon weaponData;
+    // Now reference the proxy instead of the raw Weapon asset
+    public WeaponProxy weaponProxy;
 
-    [SerializeField] public SpriteRenderer weaponSpriteRenderer; 
-
+    [SerializeField] public SpriteRenderer weaponSpriteRenderer;
 
     void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
-        
-        direction = Random.insideUnitCircle.normalized; // Random initial movement direction
-        rb.linearVelocity = direction * speed; // Constant velocity movement
 
-        if (weaponData != null)
-        { 
-        damage = weaponData.damage;
-        speed = weaponData.speed;
+        direction = Random.insideUnitCircle.normalized;
+        rb.linearVelocity = direction * speed;
 
-        
-        rb.linearVelocity = direction * speed; // Update velocity with the weapon speed
+        if (weaponProxy != null)
+        {
+            damage = weaponProxy.Damage;
+            speed = weaponProxy.Speed;
 
+            rb.linearVelocity = direction * speed; 
         }
     }
 
     void Update()
     {
         if (forwardRotation)
-        {
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-        }
         else
-        {
             transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {        
-        Vector2 normal = collision.contacts[0].normal; // Get the normal of the collision surface
-
-        direction = Vector2.Reflect(direction, normal).normalized; // Reflect current direction off the collision normal
+    {
+        Vector2 normal = collision.contacts[0].normal;
+        direction = Vector2.Reflect(direction, normal).normalized;
 
         if (collision.collider.CompareTag("Weapon"))
         {
@@ -62,8 +54,7 @@ public class Ball : MonoBehaviour
             forwardRotation = !forwardRotation;
             Debug.Log("ball hit weapon");
 
-            weaponData?.OnHit(this);
-          
+            weaponProxy?.OnHit(this);
         }
         if (collision.gameObject.CompareTag("Ball"))
         {
@@ -71,5 +62,82 @@ public class Ball : MonoBehaviour
             Debug.Log("ball hit ball");
         }
     }
-    
 }
+
+
+
+// using UnityEngine;
+
+// public class Ball : MonoBehaviour
+// {
+//     private Rigidbody2D rb;
+//     private Vector2 direction;
+  
+//     public float rotationSpeed = 360f;
+//     private bool forwardRotation = true;
+
+//     [SerializeField] public float speed;
+//     [SerializeField] public int damage;
+//     [SerializeField] private string targetTag; 
+//     [SerializeField] private string weaponTag;
+
+//     public Weapon weaponData;
+
+//     [SerializeField] public SpriteRenderer weaponSpriteRenderer; 
+
+
+//     void Start()
+//     {
+
+//         rb = GetComponent<Rigidbody2D>();
+        
+//         direction = Random.insideUnitCircle.normalized; // Random initial movement direction
+//         rb.linearVelocity = direction * speed; // Constant velocity movement
+
+//         if (weaponData != null)
+//         { 
+//         damage = weaponData.damage;
+//         speed = weaponData.speed;
+
+        
+//         rb.linearVelocity = direction * speed; // Update velocity with the weapon speed
+
+//         }
+//     }
+
+//     void Update()
+//     {
+//         if (forwardRotation)
+//         {
+//             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+//         }
+//         else
+//         {
+//             transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
+//         }
+//     }
+
+//     private void OnCollisionEnter2D(Collision2D collision)
+//     {        
+//         Vector2 normal = collision.contacts[0].normal; // Get the normal of the collision surface
+
+//         direction = Vector2.Reflect(direction, normal).normalized; // Reflect current direction off the collision normal
+
+//         if (collision.collider.CompareTag("Weapon"))
+//         {
+//             Ball otherBall = collision.collider.GetComponentInParent<Ball>();
+//             otherBall.GetComponent<WeaponHealth>().TakeDamage(damage);
+//             forwardRotation = !forwardRotation;
+//             Debug.Log("ball hit weapon");
+
+//             weaponData?.OnHit(this);
+          
+//         }
+//         if (collision.gameObject.CompareTag("Ball"))
+//         {
+//             forwardRotation = !forwardRotation;
+//             Debug.Log("ball hit ball");
+//         }
+//     }
+    
+// }

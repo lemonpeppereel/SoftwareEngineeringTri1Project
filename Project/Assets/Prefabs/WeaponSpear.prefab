@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 664286024359548933}
   - component: {fileID: 1935473829586270198}
   - component: {fileID: 5609249888595006339}
+  - component: {fileID: -8159397633641456268}
   m_Layer: 8
   m_Name: WeaponSpear
   m_TagString: Ball
@@ -523,7 +524,7 @@ MonoBehaviour:
   damage: 1
   targetTag: Ball
   weaponTag: Weapon
-  weaponData: {fileID: 11400000, guid: b33f22398ef60174eb164210c0ebbe8f, type: 2}
+  weaponProxy: {fileID: -8159397633641456268}
   weaponSpriteRenderer: {fileID: 7821451847328070814}
 --- !u!114 &5609249888595006339
 MonoBehaviour:
@@ -540,3 +541,16 @@ MonoBehaviour:
   maxHealth: 100
   spriteRenderer: {fileID: 930062374921979562}
   healthText: {fileID: 713774167984109008}
+--- !u!114 &-8159397633641456268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064679017417785133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 299d87d1b31def54bb80f08201602468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponProxy
+  weaponData: {fileID: 11400000, guid: b33f22398ef60174eb164210c0ebbe8f, type: 2}

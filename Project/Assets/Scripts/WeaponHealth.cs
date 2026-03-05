@@ -28,16 +28,19 @@ public class WeaponHealth : MonoBehaviour
 
     private Color originalColor;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private IDeathCounter _deathCounter;
+    public void Inject(IDeathCounter deathCounter) => _deathCounter = deathCounter;
+
     void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthText();
         originalColor = spriteRenderer.color;
 
+        if (_deathCounter == null && DeathCounter.Instance != null)
+            _deathCounter = DeathCounter.Instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!damagePossible)
@@ -53,7 +56,7 @@ public class WeaponHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // puts currentHealth into the range [0, maxHealth]
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         
         if (damageFlashCoroutine != null)
         {
@@ -82,11 +85,13 @@ public class WeaponHealth : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
-        if (DeathCounter.Instance != null)
-        {
-                DeathCounter.Instance.IncrementDeathCounter();
-        }
+        _deathCounter?.IncrementDeathCounter();
+
+        if (Application.isPlaying)
+            Destroy(gameObject);
+        else
+            DestroyImmediate(gameObject);
+
         Debug.Log("Weapon destroyed");
     }
 

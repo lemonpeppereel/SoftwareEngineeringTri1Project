@@ -2,12 +2,13 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DeathCounter : MonoBehaviour
+public class DeathCounter : MonoBehaviour, IDeathCounter
 {
 
     private static DeathCounter _instance;
     public static DeathCounter Instance { get { return _instance; }} 
     public int deathCounter { get; private set; } = 0;
+    public int DeathCount => deathCounter;
     [SerializeField] private TextMeshProUGUI deathCounterText; 
 
     private void Awake()

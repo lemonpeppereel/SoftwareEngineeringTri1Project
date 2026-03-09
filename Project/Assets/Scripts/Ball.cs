@@ -49,8 +49,7 @@ public class Ball : MonoBehaviour
 
         if (collision.collider.CompareTag("Weapon"))
         {
-            Ball otherBall = collision.collider.GetComponentInParent<Ball>();
-            otherBall.GetComponent<WeaponHealth>().TakeDamage(damage);
+            this.GetComponent<WeaponHealth>().TakeDamage(damage);
             forwardRotation = !forwardRotation;
             Debug.Log("ball hit weapon");
 

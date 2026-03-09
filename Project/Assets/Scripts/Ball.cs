@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -13,6 +14,8 @@ public class Ball : MonoBehaviour
     [SerializeField] private string targetTag;
     [SerializeField] private string weaponTag;
 
+    public event Action<Vector2> OnHitWall;
+
     // Now reference the proxy instead of the raw Weapon asset
     public WeaponProxy weaponProxy;
 
@@ -22,7 +25,7 @@ public class Ball : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        direction = Random.insideUnitCircle.normalized;
+        direction = UnityEngine.Random.insideUnitCircle.normalized;
         rb.linearVelocity = direction * speed;
 
         if (weaponProxy != null)
@@ -49,8 +52,7 @@ public class Ball : MonoBehaviour
 
         if (collision.collider.CompareTag("Weapon"))
         {
-            Ball otherBall = collision.collider.GetComponentInParent<Ball>();
-            otherBall.GetComponent<WeaponHealth>().TakeDamage(damage);
+            rb.gameObject.GetComponent<WeaponHealth>().TakeDamage(damage);
             forwardRotation = !forwardRotation;
             Debug.Log("ball hit weapon");
 
@@ -60,6 +62,10 @@ public class Ball : MonoBehaviour
         {
             forwardRotation = !forwardRotation;
             Debug.Log("ball hit ball");
+        }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            OnHitWall?.Invoke(transform.position);
         }
     }
 }

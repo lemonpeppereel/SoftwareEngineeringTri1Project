@@ -2,6 +2,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.Events;
+using System;
 
 public class WeaponHealth : MonoBehaviour
 {
@@ -14,8 +16,6 @@ public class WeaponHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Coroutine damageFlashCoroutine;
-
-    private GameObject weapon;
 
     private float flashLength = 0.05f; 
 
@@ -30,6 +30,10 @@ public class WeaponHealth : MonoBehaviour
 
     private IDeathCounter _deathCounter;
     public void Inject(IDeathCounter deathCounter) => _deathCounter = deathCounter;
+
+    public event Action<Vector2> OnHit;
+    public event Action<Vector2> OnDeath;
+    
 
     void Start()
     {
@@ -58,6 +62,8 @@ public class WeaponHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         
+        OnHit?.Invoke(transform.position);
+
         if (damageFlashCoroutine != null)
         {
             StopCoroutine(damageFlashCoroutine);
@@ -86,6 +92,8 @@ public class WeaponHealth : MonoBehaviour
     public void Die()
     {
         _deathCounter?.IncrementDeathCounter();
+
+        OnDeath?.Invoke(transform.position);
 
         if (Application.isPlaying)
             Destroy(gameObject);

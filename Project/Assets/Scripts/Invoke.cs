@@ -5,6 +5,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
     public Transform spawnpoint;
     public GameObject weaponPrefab;
+    public AudioManager audioManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,7 +16,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public void Spawn()
     {
-        Instantiate(weaponPrefab, spawnpoint.position, spawnpoint.rotation);
+        GameObject ball = Instantiate(weaponPrefab, spawnpoint.position, spawnpoint.rotation);
+        audioManager.Subscribe(ball);
     }
 
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviour, IBall
 {
     private Rigidbody2D rb;
     private Vector2 direction;
@@ -17,6 +17,17 @@ public class Ball : MonoBehaviour
     public WeaponProxy weaponProxy;
 
     [SerializeField] public SpriteRenderer weaponSpriteRenderer;
+
+    public Rigidbody2D Rb { get => rb; }
+    public Vector2 Direction { get => direction; }
+    public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
+    public bool ForwardRotation { get => forwardRotation; set => ForwardRotation = value; }
+    public float Speed { get => speed; }
+    public int Damage { get => damage; }
+    public string TargetTag { get => targetTag; }
+    public string WeaponTag { get => weaponTag; }
+    public WeaponProxy WeaponProxy { get => weaponProxy; }
+    public SpriteRenderer WeaponSpriteRenderer { get => weaponSpriteRenderer; }
 
     void Start()
     {
@@ -36,6 +47,11 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
+        Rotate();
+    }
+
+    public void Rotate()
+    {
         if (forwardRotation)
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
         else
@@ -49,17 +65,27 @@ public class Ball : MonoBehaviour
 
         if (collision.collider.CompareTag("Weapon"))
         {
-            this.GetComponent<WeaponHealth>().TakeDamage(damage);
-            forwardRotation = !forwardRotation;
-            Debug.Log("ball hit weapon");
-
-            weaponProxy?.OnHit(this);
+            WeaponHit(collision);
         }
         if (collision.gameObject.CompareTag("Ball"))
         {
-            forwardRotation = !forwardRotation;
-            Debug.Log("ball hit ball");
+            BallHit(collision);
         }
+    }
+
+    public void WeaponHit(Collision2D collision)
+    {
+        this.GetComponent<WeaponHealth>().TakeDamage(damage);
+        forwardRotation = !forwardRotation;
+        Debug.Log("ball hit weapon");
+
+        weaponProxy?.OnHit(this);
+    }
+
+    public void BallHit(Collision2D collision)
+    {
+        forwardRotation = !forwardRotation;
+        Debug.Log("ball hit ball");
     }
 }
 

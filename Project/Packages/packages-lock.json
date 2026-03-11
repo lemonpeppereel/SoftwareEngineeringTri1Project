@@ -372,15 +372,6 @@
       },
       "url": "https://unitynuget-registry.openupm.com"
     },
-    "org.nuget.microsoft.bcl.asyncinterfaces": {
-      "version": "10.0.0",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "org.nuget.system.threading.tasks.extensions": "4.6.3"
-      },
-      "url": "https://unitynuget-registry.openupm.com"
-    },
     "org.nuget.nsubstitute": {
       "version": "5.3.0",
       "depth": 0,
@@ -391,22 +382,6 @@
       },
       "url": "https://unitynuget-registry.openupm.com"
     },
-    "org.nuget.restsharp": {
-      "version": "114.0.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "org.nuget.system.text.json": "10.0.0"
-      },
-      "url": "https://unitynuget-registry.openupm.com"
-    },
-    "org.nuget.system.buffers": {
-      "version": "4.6.1",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://unitynuget-registry.openupm.com"
-    },
     "org.nuget.system.diagnostics.eventlog": {
       "version": "4.7.0",
       "depth": 2,
@@ -414,35 +389,6 @@
       "dependencies": {
         "org.nuget.system.security.principal.windows": "4.7.0"
       },
-      "url": "https://unitynuget-registry.openupm.com"
-    },
-    "org.nuget.system.io.pipelines": {
-      "version": "10.0.0",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "org.nuget.system.buffers": "4.6.1",
-        "org.nuget.system.memory": "4.6.3",
-        "org.nuget.system.threading.tasks.extensions": "4.6.3"
-      },
-      "url": "https://unitynuget-registry.openupm.com"
-    },
-    "org.nuget.system.memory": {
-      "version": "4.6.3",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "org.nuget.system.buffers": "4.6.1",
-        "org.nuget.system.numerics.vectors": "4.6.1",
-        "org.nuget.system.runtime.compilerservices.unsafe": "6.1.2"
-      },
-      "url": "https://unitynuget-registry.openupm.com"
-    },
-    "org.nuget.system.numerics.vectors": {
-      "version": "4.6.1",
-      "depth": 3,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://unitynuget-registry.openupm.com"
     },
     "org.nuget.system.reflection.emit": {
@@ -461,13 +407,6 @@
       "dependencies": {},
       "url": "https://unitynuget-registry.openupm.com"
     },
-    "org.nuget.system.runtime.compilerservices.unsafe": {
-      "version": "6.1.2",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://unitynuget-registry.openupm.com"
-    },
     "org.nuget.system.security.principal.windows": {
       "version": "4.7.0",
       "depth": 3,
@@ -475,39 +414,11 @@
       "dependencies": {},
       "url": "https://unitynuget-registry.openupm.com"
     },
-    "org.nuget.system.text.encodings.web": {
-      "version": "10.0.0",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "org.nuget.system.buffers": "4.6.1",
-        "org.nuget.system.memory": "4.6.3",
-        "org.nuget.system.runtime.compilerservices.unsafe": "6.1.2"
-      },
-      "url": "https://unitynuget-registry.openupm.com"
-    },
-    "org.nuget.system.text.json": {
-      "version": "10.0.0",
+    "org.nuget.system.threading.tasks.extensions": {
+      "version": "4.4.0",
       "depth": 1,
       "source": "registry",
-      "dependencies": {
-        "org.nuget.microsoft.bcl.asyncinterfaces": "10.0.0",
-        "org.nuget.system.io.pipelines": "10.0.0",
-        "org.nuget.system.text.encodings.web": "10.0.0",
-        "org.nuget.system.buffers": "4.6.1",
-        "org.nuget.system.memory": "4.6.3",
-        "org.nuget.system.runtime.compilerservices.unsafe": "6.1.2",
-        "org.nuget.system.threading.tasks.extensions": "4.6.3"
-      },
-      "url": "https://unitynuget-registry.openupm.com"
-    },
-    "org.nuget.system.threading.tasks.extensions": {
-      "version": "4.6.3",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "org.nuget.system.runtime.compilerservices.unsafe": "6.1.2"
-      },
+      "dependencies": {},
       "url": "https://unitynuget-registry.openupm.com"
     },
     "com.unity.modules.accessibility": {

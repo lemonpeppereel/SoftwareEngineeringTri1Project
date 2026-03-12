@@ -30,8 +30,8 @@ public class WeaponHealth : MonoBehaviour
     private IDeathCounter _deathCounter;
     public void Inject(IDeathCounter deathCounter) => _deathCounter = deathCounter;
 
-    public event Action<Vector2> OnHit;
-    public event Action<Vector2> OnDeath;
+    public Action<Vector2> OnHit;
+    public Action<Vector2> OnDeath;
     
 
     void Start()

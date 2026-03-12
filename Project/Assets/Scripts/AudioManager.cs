@@ -12,28 +12,33 @@ public class AudioManager : MonoBehaviour
     public float deathSoundVolume = 1.0f;
     public float wallHitSoundVolume = 1.5f;
 
+    public IAudioPlayer audioPlayer {get; set;} = new AudioPlayer();
 
-    public void Subscribe(GameObject ball)
+    public void SubscribeForWeaponHealth(WeaponHealth weaponHealth)
     {
-        ball.GetComponent<WeaponHealth>().OnHit += HandleHit;
-        ball.GetComponent<WeaponHealth>().OnDeath += HandleDeath;
-        ball.GetComponent<Ball>().OnHitWall += HandleHitWall;
+        weaponHealth.OnHit += HandleHit; 
+        weaponHealth.OnDeath += HandleDeath;
+        
+    }
+    public void SubscribeForBall(Ball ball)
+    {
+        ball.OnHitWall += HandleHitWall;
     }
 
     public void HandleHit(Vector2 position)
     {
-        AudioSource.PlayClipAtPoint(hitSound, position, hitSoundVolume);
+        audioPlayer.PlayClipAtPoint(hitSound, position, hitSoundVolume);
     }
 
     public void HandleDeath(Vector2 position)
     {
-        AudioSource.PlayClipAtPoint(deathSound, position, deathSoundVolume);
+        audioPlayer.PlayClipAtPoint(deathSound, position, deathSoundVolume);
 
     }
 
     public void HandleHitWall(Vector2 position)
     {
-        AudioSource.PlayClipAtPoint(wallHitSound, position, wallHitSoundVolume);
+        audioPlayer.PlayClipAtPoint(wallHitSound, position, wallHitSoundVolume);
     }
 
 }

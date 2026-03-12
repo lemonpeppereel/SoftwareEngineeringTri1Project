@@ -14,7 +14,7 @@ public class Ball : MonoBehaviour, IBall
     [SerializeField] private string targetTag;
     [SerializeField] private string weaponTag;
 
-    public event Action<Vector2> OnHitWall;
+    public Action<Vector2> OnHitWall;
 
     // Now reference the proxy instead of the raw Weapon asset
     public WeaponProxy weaponProxy;

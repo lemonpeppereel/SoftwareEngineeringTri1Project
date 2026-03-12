@@ -1,7 +1,7 @@
 using NUnit.Framework.Internal;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Invoke : MonoBehaviour
 {
     public Transform spawnpoint;
     public GameObject weaponPrefab;
@@ -17,7 +17,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public void Spawn()
     {
         GameObject ball = Instantiate(weaponPrefab, spawnpoint.position, spawnpoint.rotation);
-        audioManager.Subscribe(ball);
+        audioManager.SubscribeForWeaponHealth(ball.GetComponent<WeaponHealth>());
+        audioManager.SubscribeForBall(ball.GetComponent<Ball>());
     }
 
 }

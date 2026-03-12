@@ -6,4 +6,4 @@ public class DeathCounter : IDeathCounter
     {
         DeathCount++;
     }
-}
+}   

@@ -2561,7 +2561,7 @@ MonoBehaviour:
   wallHitSound: {fileID: 8300000, guid: 05f85fb66ea1df14a9a2e156cd44ef33, type: 3}
   hitSoundVolume: 0.8
   deathSoundVolume: 1
-  wallHitSoundVolume: 1
+  wallHitSoundVolume: 1.5
 --- !u!4 &1492244751
 Transform:
   m_ObjectHideFlags: 0

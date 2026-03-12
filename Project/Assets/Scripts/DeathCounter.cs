@@ -1,50 +1,9 @@
-using TMPro;
-using Unity.VisualScripting;
-using UnityEngine;
-
-public class DeathCounter : MonoBehaviour, IDeathCounter
+public class DeathCounter : IDeathCounter
 {
-
-    private static DeathCounter _instance;
-    public static DeathCounter Instance { get { return _instance; }} 
-    public int deathCounter { get; private set; } = 0;
-    public int DeathCount => deathCounter;
-    [SerializeField] private TextMeshProUGUI deathCounterText; 
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        } else {
-            _instance = this;
-        }
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        UpdateDeathCounter();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int DeathCount { get; private set; } = 0;
 
     public void IncrementDeathCounter()
     {
-        deathCounter++;
-        UpdateDeathCounter();
-        Debug.Log("Weapons destroyed: " + deathCounter); 
-    }
-
-    private void UpdateDeathCounter()
-    {
-        if (deathCounterText != null)
-        {
-            deathCounterText.text = "Weapons killed: " + deathCounter.ToString();
-        }
+        DeathCount++;
     }
 }

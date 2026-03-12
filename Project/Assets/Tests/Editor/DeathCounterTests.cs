@@ -1,37 +1,37 @@
 using NUnit.Framework;
+using NSubstitute;
 using UnityEngine;
 
 public class DeathCounterTests
 {
-    private (WeaponHealth health, MockDeathCounter mock) MakeWeaponHealth()
+    // Builds a WeaponHealth GameObject with a mock IDeathCounter injected
+    private WeaponHealth MakeWeaponHealth(IDeathCounter mock)
     {
-        var go     = new GameObject("TestWeapon");
-        go.AddComponent<SpriteRenderer>(); // required by WeaponHealth.Start()
+        var go = new GameObject("TestWeapon");
+        go.AddComponent<SpriteRenderer>();
         var health = go.AddComponent<WeaponHealth>();
-        var mock   = new MockDeathCounter();
         health.Inject(mock);
-        return (health, mock);
+        return health;
     }
 
-    [Test]
-    public void MockCounter_StartsAtZero()
-    {
-        var mock = new MockDeathCounter();
-        Assert.AreEqual(0, mock.DeathCount);
-    }
-
+    // Tests that Die() calls IncrementDeathCounter() exactly once
     [Test]
     public void Die_IncrementsDeathCounterOnce()
     {
-        var (health, mock) = MakeWeaponHealth();
+        var mock = Substitute.For<IDeathCounter>();
+        var health = MakeWeaponHealth(mock);
+
         health.Die();
-        Assert.AreEqual(1, mock.DeathCount);
+
+        mock.Received(1).IncrementDeathCounter();
     }
 
+    // Tests that three separate weapons dying increments the counter three times
     [Test]
     public void Die_CalledThreeTimes_CountIsThree()
     {
-        var mock = new MockDeathCounter();
+        var mock = Substitute.For<IDeathCounter>();
+
         for (int i = 0; i < 3; i++)
         {
             var go = new GameObject();
@@ -40,17 +40,33 @@ public class DeathCounterTests
             wh.Inject(mock);
             wh.Die();
         }
-        Assert.AreEqual(3, mock.DeathCount);
+
+        mock.Received(3).IncrementDeathCounter();
     }
 
+    // Tests that Die() doesn't crash when no IDeathCounter has been injected
+    [Test]
+    public void Die_WithNoInjectedCounter_DoesNotThrow()
+    {
+        var go = new GameObject("TestWeapon");
+        go.AddComponent<SpriteRenderer>();
+        var health = go.AddComponent<WeaponHealth>();
+
+        Assert.DoesNotThrow(() => health.Die());
+    }
+
+    // Tests that replacing the injected counter means only the new one receives the increment
     [Test]
     public void Inject_CanReplaceCounter_NewCounterReceivesIncrement()
     {
-        var (health, firstMock) = MakeWeaponHealth();
-        var secondMock = new MockDeathCounter();
+        var firstMock  = Substitute.For<IDeathCounter>();
+        var secondMock = Substitute.For<IDeathCounter>();
+        var health = MakeWeaponHealth(firstMock);
+
         health.Inject(secondMock);
         health.Die();
-        Assert.AreEqual(0, firstMock.DeathCount);
-        Assert.AreEqual(1, secondMock.DeathCount);
+
+        firstMock.DidNotReceive().IncrementDeathCounter();
+        secondMock.Received(1).IncrementDeathCounter();
     }
 }

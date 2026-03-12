@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviour, IBall
 {
     private Rigidbody2D rb;
     private Vector2 direction;
@@ -39,6 +39,11 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
+        Rotate();
+    }
+
+    private void Rotate()
+    {
         if (forwardRotation)
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
         else
@@ -52,21 +57,32 @@ public class Ball : MonoBehaviour
 
         if (collision.collider.CompareTag("Weapon"))
         {
-            rb.gameObject.GetComponent<WeaponHealth>().TakeDamage(damage);
-            forwardRotation = !forwardRotation;
-            Debug.Log("ball hit weapon");
-
-            weaponProxy?.OnHit(this);
+            WeaponHit(collision);
         }
         if (collision.gameObject.CompareTag("Ball"))
         {
-            forwardRotation = !forwardRotation;
-            Debug.Log("ball hit ball");
+            BallHit(collision);
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
             OnHitWall?.Invoke(transform.position);
         }
+    }
+
+    private void WeaponHit(Collision2D collision)
+    {
+        Ball otherBall = collision.collider.GetComponentInParent<Ball>();
+        this.GetComponent<WeaponHealth>().TakeDamage(otherBall.damage);
+        forwardRotation = !forwardRotation;
+        Debug.Log("ball hit weapon");
+
+        weaponProxy?.OnHit(this);
+    }
+
+    private void BallHit(Collision2D collision)
+    {
+        forwardRotation = !forwardRotation;
+        Debug.Log("ball hit ball");
     }
 }
 

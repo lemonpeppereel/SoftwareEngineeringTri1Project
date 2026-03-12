@@ -7,8 +7,7 @@ using System;
 
 public class WeaponHealth : MonoBehaviour
 {
-
-    [SerializeField] 
+    [SerializeField]
     private float maxHealth;
     private float currentHealth;
 
@@ -16,18 +15,18 @@ public class WeaponHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Coroutine damageFlashCoroutine;
-
-    private float flashLength = 0.05f; 
+    private float flashLength = 0.05f;
 
     private bool damagePossible;
-    private float damageInvincibility = 0.1f; 
+    private float damageInvincibility = 0.1f;
     private float damageInvincibilityCooldown = 0.1f;
-    
+
     [SerializeField]
     private TMP_Text healthText;
 
     private Color originalColor;
 
+    // Only used in tests — inject a mock IDeathCounter
     private IDeathCounter _deathCounter;
     public void Inject(IDeathCounter deathCounter) => _deathCounter = deathCounter;
 
@@ -40,9 +39,6 @@ public class WeaponHealth : MonoBehaviour
         currentHealth = maxHealth;
         UpdateHealthText();
         originalColor = spriteRenderer.color;
-
-        if (_deathCounter == null && DeathCounter.Instance != null)
-            _deathCounter = DeathCounter.Instance;
     }
 
     void Update()
@@ -51,9 +47,7 @@ public class WeaponHealth : MonoBehaviour
         {
             damageInvincibilityCooldown -= Time.deltaTime;
             if (damageInvincibilityCooldown < 0)
-            {
                 damagePossible = true;
-            }
         }
     }
 
@@ -75,23 +69,22 @@ public class WeaponHealth : MonoBehaviour
         UpdateHealthText();
         Debug.Log("weapon took " + damage + " damage");
 
-        if (IsDead())
-        {
-            Die(); 
-        }
+        if (IsDead()) Die();
 
         damagePossible = false;
         damageInvincibilityCooldown = damageInvincibility;
     }
 
-    public bool IsDead()
-    {
-        return currentHealth <= 0;
-    }
+    public bool IsDead() => currentHealth <= 0;
 
     public void Die()
     {
-        _deathCounter?.IncrementDeathCounter();
+        // In tests: use injected mock
+        // In game: use the singleton directly
+        if (_deathCounter != null)
+            _deathCounter.IncrementDeathCounter();
+        else if (DeathCounterSingleton.Instance != null)
+            DeathCounterSingleton.Instance.IncrementDeathCounter();
 
         OnDeath?.Invoke(transform.position);
 
@@ -105,7 +98,7 @@ public class WeaponHealth : MonoBehaviour
 
     public IEnumerator DamageFlash()
     {
-        spriteRenderer.color = Color.red; 
+        spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(flashLength);
         spriteRenderer.color = originalColor;
         damageFlashCoroutine = null;
@@ -114,9 +107,6 @@ public class WeaponHealth : MonoBehaviour
     private void UpdateHealthText()
     {
         if (healthText != null)
-        {
             healthText.text = currentHealth.ToString();
-        }
     }
-
 }

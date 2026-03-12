@@ -2,6 +2,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.Events;
+using System;
 
 public class WeaponHealth : MonoBehaviour
 {
@@ -28,6 +30,10 @@ public class WeaponHealth : MonoBehaviour
     private IDeathCounter _deathCounter;
     public void Inject(IDeathCounter deathCounter) => _deathCounter = deathCounter;
 
+    public event Action<Vector2> OnHit;
+    public event Action<Vector2> OnDeath;
+    
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -49,6 +55,8 @@ public class WeaponHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        
+        OnHit?.Invoke(transform.position);
 
         if (damageFlashCoroutine != null)
         {
@@ -77,6 +85,8 @@ public class WeaponHealth : MonoBehaviour
             _deathCounter.IncrementDeathCounter();
         else if (DeathCounterSingleton.Instance != null)
             DeathCounterSingleton.Instance.IncrementDeathCounter();
+
+        OnDeath?.Invoke(transform.position);
 
         if (Application.isPlaying)
             Destroy(gameObject);

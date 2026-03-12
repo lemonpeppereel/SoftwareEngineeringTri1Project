@@ -1372,6 +1372,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8719783630754971387, guid: 06924e0d197e22e48bcb7e5c245089cb, type: 3}
     - target: {fileID: 5614741951306993708, guid: 64a594d7595312e4a96c3856fb254b38, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1492244750}
+    - target: {fileID: 5614741951306993708, guid: 64a594d7595312e4a96c3856fb254b38, type: 3}
       propertyPath: weaponPrefab
       value: 
       objectReference: {fileID: 8719783630754971387, guid: 06924e0d197e22e48bcb7e5c245089cb, type: 3}
@@ -1822,6 +1826,10 @@ PrefabInstance:
       propertyPath: testPrefab
       value: 
       objectReference: {fileID: 7064679017417785133, guid: 4fa0dc7b769b7354f93577b6d3688a20, type: 3}
+    - target: {fileID: 5614741951306993708, guid: 64a594d7595312e4a96c3856fb254b38, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1492244750}
     - target: {fileID: 5614741951306993708, guid: 64a594d7595312e4a96c3856fb254b38, type: 3}
       propertyPath: weaponPrefab
       value: 
@@ -2519,6 +2527,56 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 53.98}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1492244749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1492244751}
+  - component: {fileID: 1492244750}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1492244750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492244749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00876ed24e74fa443a89fdfef2c5ed13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  hitSound: {fileID: 8300000, guid: d253070a65a573d4a9be439b46f96ec5, type: 3}
+  deathSound: {fileID: 8300000, guid: 36cebebab823ed4488b0e8eb3b7530b6, type: 3}
+  wallHitSound: {fileID: 8300000, guid: 05f85fb66ea1df14a9a2e156cd44ef33, type: 3}
+  hitSoundVolume: 0.8
+  deathSoundVolume: 1
+  wallHitSoundVolume: 1
+--- !u!4 &1492244751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492244749}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1559807738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,7 +2846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -162.5, y: 30}
+  m_AnchoredPosition: {x: -162.5, y: 41.34}
   m_SizeDelta: {x: 217.9, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629472717 stripped
@@ -3669,6 +3727,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6458050611022104218, guid: 3bee021fea893eb4a9602b4985f58a74, type: 3}
     - target: {fileID: 5614741951306993708, guid: 64a594d7595312e4a96c3856fb254b38, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1492244750}
+    - target: {fileID: 5614741951306993708, guid: 64a594d7595312e4a96c3856fb254b38, type: 3}
       propertyPath: weaponPrefab
       value: 
       objectReference: {fileID: 6458050611022104218, guid: 3bee021fea893eb4a9602b4985f58a74, type: 3}
@@ -3693,3 +3755,4 @@ SceneRoots:
   - {fileID: 6613989880862272309}
   - {fileID: 790507919}
   - {fileID: 552869264}
+  - {fileID: 1492244751}

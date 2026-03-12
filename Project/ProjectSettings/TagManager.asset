@@ -10,6 +10,7 @@ TagManager:
   - Weapon
   - Spawnpoint
   - Weapons
+  - Wall
   layers:
   - Default
   - TransparentFX
